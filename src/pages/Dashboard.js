@@ -38,7 +38,25 @@ const Dashboard = ({}) => {
 	}, []);
 
 	if (loading) {
-		return <LinearProgress color="secondary" />;
+		return (
+			<div className="loading-bar">
+				<LinearProgress color="secondary" />
+				<div
+					className="d-flex justify-content-center align-items-center flex-column"
+					style={{ height: "90vh" }}
+				>
+					<div>
+						<img
+							src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif"
+							style={{ width: "350px" }}
+						/>
+					</div>
+					<div>
+						<h1>Loading Covid Data...</h1>
+					</div>
+				</div>
+			</div>
+		);
 	}
 	return (
 		<Container>
