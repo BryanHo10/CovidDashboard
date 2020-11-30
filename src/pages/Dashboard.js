@@ -1,11 +1,34 @@
-import { Container, LinearProgress, Typography } from "@material-ui/core";
+import { Container, Divider, LinearProgress } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { Row, Col, Card } from "react-bootstrap";
+import { pick, head } from "lodash";
 import { getCurrentUSCovidData } from "../api/covid";
+import { formatReadableNumber, formatTitleCase } from "../utils/format";
 
+const StatsCards = ({ dataSource }) => {
+	const keysForRender = [
+		"death",
+		"hospitalized",
+		"positive",
+		"recovered",
+		"negative",
+	];
+	const covidStats = pick(dataSource, keysForRender);
+	return Object.keys(covidStats).map((category) => (
+		<Col md={4} className="pt-3">
+			<Card>
+				<Card.Body>
+					<Card.Title>{formatTitleCase(category)}</Card.Title>
+					<Card.Text>{formatReadableNumber(covidStats[category])}</Card.Text>
+				</Card.Body>
+			</Card>
+		</Col>
+	));
+};
 const Dashboard = ({}) => {
 	const [usCovidData, setUSCovidData] = useState(null);
 	const [loading, setLoading] = useState(true);
+
 	useEffect(() => {
 		setLoading(true);
 		getCurrentUSCovidData().then((response) => {
@@ -19,40 +42,10 @@ const Dashboard = ({}) => {
 	}
 	return (
 		<Container>
+			<h1>Dashboard</h1>
+			<Divider variant="middle" />
 			<Row>
-				<Col md={4}>
-					<Card>
-						<Card.Body>
-							<Card.Title>Data</Card.Title>
-							<Card.Text>
-								Some quick example text to build on the card title and make up
-								the bulk of the card's content.
-							</Card.Text>
-						</Card.Body>
-					</Card>
-				</Col>
-				<Col md={4}>
-					<Card>
-						<Card.Body>
-							<Card.Title>Data</Card.Title>
-							<Card.Text>
-								Some quick example text to build on the card title and make up
-								the bulk of the card's content.
-							</Card.Text>
-						</Card.Body>
-					</Card>
-				</Col>
-				<Col md={4}>
-					<Card>
-						<Card.Body>
-							<Card.Title>Data</Card.Title>
-							<Card.Text>
-								Some quick example text to build on the card title and make up
-								the bulk of the card's content.
-							</Card.Text>
-						</Card.Body>
-					</Card>
-				</Col>
+				<StatsCards dataSource={head(usCovidData)} />
 			</Row>
 		</Container>
 	);
