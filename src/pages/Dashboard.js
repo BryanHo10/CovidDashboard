@@ -15,8 +15,8 @@ const StatsCards = ({ dataSource }) => {
 		"negative",
 	];
 	const covidStats = pick(dataSource, keysForRender);
-	return Object.keys(covidStats).map((category) => (
-		<Col md={4} className="pt-3">
+	return Object.keys(covidStats).map((category, idx) => (
+		<Col md={4} className="pt-3" key={`card_${idx}`}>
 			<Card>
 				<Card.Body>
 					<Card.Title>{formatTitleCase(category)}</Card.Title>

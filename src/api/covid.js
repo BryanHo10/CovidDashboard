@@ -4,7 +4,6 @@ import { COVID_TRACKING_PROJECT_URL } from "./api";
 
 const ALL_US_COVID_DATA_URL = "/v1/us/daily.json";
 const CURRENT_US_COVID_DATA_URL = "/v1/us/current.json";
-const ALL_STATES_COVID_DATA_URL = "/v1/states/daily.json";
 const CURRENT_STATE_COVID_DATA_URL = "/v1/states/current.json";
 
 const getHistoricUSCovidData = () => {
@@ -17,8 +16,9 @@ const getCurrentUSCovidData = () => {
 	const response = fetch(url).then((data) => data.json());
 	return response;
 };
-const getHistoricStatesData = () => {
-	const url = `${COVID_TRACKING_PROJECT_URL}${ALL_STATES_COVID_DATA_URL}`;
+const getHistoricStateData = (state) => {
+	const STATE_ALL_COVID_DATA_URL = `/v1/states/${state}/daily.json`;
+	const url = `${COVID_TRACKING_PROJECT_URL}${STATE_ALL_COVID_DATA_URL}`;
 	const response = fetch(url).then((data) => data.json());
 	return response;
 };
@@ -31,6 +31,6 @@ const getCurrentStatesData = () => {
 export {
 	getHistoricUSCovidData,
 	getCurrentUSCovidData,
-	getHistoricStatesData,
+	getHistoricStateData,
 	getCurrentStatesData,
 };
