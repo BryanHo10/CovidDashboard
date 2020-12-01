@@ -1,3 +1,6 @@
+import { US_STATES } from "../constants";
+import { isEmpty, head } from "lodash";
+
 const formatTitleCase = (str) => {
 	return str.replace(
 		/\w\S*/g,
@@ -7,5 +10,9 @@ const formatTitleCase = (str) => {
 const formatReadableNumber = (number) => {
 	return new Intl.NumberFormat("en-US").format(number);
 };
-
-export { formatTitleCase, formatReadableNumber };
+const getStateByAbbr = (abbr) => {
+	const filteredView = US_STATES.filter((state) => state.abbr === abbr);
+	if (!isEmpty(filteredView)) return head(filteredView).full_name;
+	return abbr;
+};
+export { formatTitleCase, formatReadableNumber, getStateByAbbr };

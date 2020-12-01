@@ -1,0 +1,13 @@
+
+.covid-map {
+    display: flex;
+    margin: 1em 0;
+    justify-content: center;
+}
+.covid-map path {
+    pointer-events: all;
+  }
+ .covid-map path:hover {
+    opacity: 0.50;
+    cursor: pointer;
+  }

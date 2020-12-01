@@ -9428,6 +9428,13 @@ react-transition-group@^4.4.0, react-transition-group@^4.4.1:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
+react-usa-map@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/react-usa-map/-/react-usa-map-1.5.0.tgz#b290860a066520631ff9b9b14ecb93f6c3b1c298"
+  integrity sha512-Czs74kGMi3vWr4/alTQc34I5+PdCTIzmbfKJyxPE1eW9VfdC5jfkgr1LpCEHhtFxO03e3Z9+P7s6BT/ps4UNIA==
+  dependencies:
+    babel-runtime "^6.26.0"
+
 react@^17.0.1:
   version "17.0.1"
   resolved "https://registry.yarnpkg.com/react/-/react-17.0.1.tgz#6e0600416bd57574e3f86d92edba3d9008726127"

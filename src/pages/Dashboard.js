@@ -4,6 +4,7 @@ import { Row, Col, Card } from "react-bootstrap";
 import { pick, head } from "lodash";
 import { getCurrentUSCovidData } from "../api/covid";
 import { formatReadableNumber, formatTitleCase } from "../utils/format";
+import CovidMap from "../components/Dashboard/CovidMap";
 
 const StatsCards = ({ dataSource }) => {
 	const keysForRender = [
@@ -62,9 +63,11 @@ const Dashboard = ({}) => {
 		<Container>
 			<h1>Dashboard</h1>
 			<Divider variant="middle" />
-			<Row>
+			<Row className="my-3">
 				<StatsCards dataSource={head(usCovidData)} />
 			</Row>
+			<Divider variant="middle" />
+			<CovidMap />
 		</Container>
 	);
 };
