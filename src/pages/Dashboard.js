@@ -5,26 +5,35 @@ import { pick, head } from "lodash";
 import { getCurrentUSCovidData } from "../api/covid";
 import { formatReadableNumber, formatTitleCase } from "../utils/format";
 import CovidMap from "../components/Dashboard/CovidMap";
+import moment from "moment";
 
-const StatsCards = ({ dataSource }) => {
-	const keysForRender = [
-		"death",
-		"hospitalized",
-		"positive",
-		"recovered",
-		"negative",
-	];
+const StatsCards = ({ dataSource, keysForRender, highlightTrend }) => {
 	const covidStats = pick(dataSource, keysForRender);
-	return Object.keys(covidStats).map((category, idx) => (
-		<Col md={4} className="pt-3" key={`card_${idx}`}>
-			<Card>
-				<Card.Body>
-					<Card.Title>{formatTitleCase(category)}</Card.Title>
-					<Card.Text>{formatReadableNumber(covidStats[category])}</Card.Text>
-				</Card.Body>
-			</Card>
-		</Col>
-	));
+	return Object.keys(covidStats).map((category, idx) => {
+		const isNegative = covidStats[category] < 0;
+		return (
+			<Col className="pt-3" key={`card_${idx}`}>
+				<Card>
+					<Card.Body>
+						<Card.Title>{formatTitleCase(category)} Count</Card.Title>
+						<Card.Text>
+							<span
+								className={`h1 ${
+									highlightTrend
+										? isNegative
+											? "text-danger"
+											: "text-success"
+										: ""
+								}`}
+							>
+								{formatReadableNumber(covidStats[category])}
+							</span>
+						</Card.Text>
+					</Card.Body>
+				</Card>
+			</Col>
+		);
+	});
 };
 const Dashboard = ({}) => {
 	const [usCovidData, setUSCovidData] = useState(null);
@@ -63,9 +72,34 @@ const Dashboard = ({}) => {
 		<Container>
 			<h1>Dashboard</h1>
 			<Divider variant="middle" />
+			<h2>
+				Last Updated:{" "}
+				{moment(head(usCovidData).lastModified).format("MMMM Do YYYY, h:mm a")}
+			</h2>
 			<Row className="my-3">
-				<StatsCards dataSource={head(usCovidData)} />
+				<Col md={5}>
+					<Row className="flex-column">
+						<StatsCards
+							dataSource={head(usCovidData)}
+							keysForRender={["death", "hospitalized", "positive", "recovered"]}
+						/>
+					</Row>
+				</Col>
+				<Col>
+					<Row className="flex-column">
+						<StatsCards
+							dataSource={head(usCovidData)}
+							highlightTrend
+							keysForRender={[
+								"deathIncrease",
+								"hospitalizedIncrease",
+								"positiveIncrease",
+							]}
+						/>
+					</Row>
+				</Col>
 			</Row>
+
 			<Divider variant="middle" />
 			<CovidMap />
 		</Container>

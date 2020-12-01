@@ -1,4 +1,4 @@
-import { Box, Paper, Tab, Tabs, Typography } from "@material-ui/core";
+import { Paper, Tab, Tabs } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { getHistoricStateData } from "../../api/covid";
 import { getStateByAbbr } from "../../utils/format";
@@ -6,11 +6,7 @@ import { getStateByAbbr } from "../../utils/format";
 const TabPanel = ({ children, value, index, ...other }) => {
 	return (
 		<div role="tabpanel" hidden={value !== index} {...other}>
-			{value === index && (
-				<Box p={3}>
-					<Typography>{children}</Typography>
-				</Box>
-			)}
+			{value === index && <div>{children}</div>}
 		</div>
 	);
 };
@@ -24,7 +20,7 @@ const CovidState = ({ stateData }) => {
 		hospitalized,
 		state,
 	} = stateData;
-	const [value, setValue] = useState("one");
+	const [value, setValue] = useState("deaths");
 
 	useEffect(() => {
 		getHistoricStateData(state.toLowerCase()).then((data) => {
@@ -48,18 +44,18 @@ const CovidState = ({ stateData }) => {
 					textColor="primary"
 					centered
 				>
-					<Tab value="one" label="Number of Deaths" />
-					<Tab value="two" label="Number of Positive Cases" />
-					<Tab value="three" label="Number Recovered" />
+					<Tab value="deaths" label="Number of Deaths" />
+					<Tab value="positve" label="Number of Positive Cases" />
+					<Tab value="recover" label="Number Recovered" />
 				</Tabs>
 			</Paper>
-			<TabPanel value={value} index="one">
+			<TabPanel value={value} index="deaths">
 				Number of Deaths
 			</TabPanel>
-			<TabPanel value={value} index="two">
+			<TabPanel value={value} index="positve">
 				Number of Positive Cases
 			</TabPanel>
-			<TabPanel value={value} index="three">
+			<TabPanel value={value} index="recover">
 				Number Recovered
 			</TabPanel>
 		</div>

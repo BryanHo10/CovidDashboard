@@ -2,7 +2,8 @@ import { US_STATES } from "../constants";
 import { isEmpty, head } from "lodash";
 
 const formatTitleCase = (str) => {
-	return str.replace(
+	const s = str.replace(/([A-Z])/g, " $1").trim();
+	return s.replace(
 		/\w\S*/g,
 		(txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
 	);
