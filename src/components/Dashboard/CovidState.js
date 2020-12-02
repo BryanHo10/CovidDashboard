@@ -1,7 +1,10 @@
 import { Paper, Tab, Tabs } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
+import { head } from "lodash";
+import moment from "moment";
 import { getHistoricStateData } from "../../api/covid";
 import { getStateByAbbr } from "../../utils/format";
+import GraphChart from "../Common/Graph";
 
 const TabPanel = ({ children, value, index, ...other }) => {
 	return (
@@ -21,12 +24,26 @@ const CovidState = ({ stateData }) => {
 		state,
 	} = stateData;
 	const [value, setValue] = useState("deaths");
+	const [data, setData] = useState(null);
 
 	useEffect(() => {
 		getHistoricStateData(state.toLowerCase()).then((data) => {
-			console.log(data);
+			setData(data);
 		});
-	}, []);
+	}, [stateData]);
+
+	const prepStateData = (data, keyword) => {
+		const graphData = [...data]
+			.splice(0, 50)
+			.map((date, idx) => {
+				return {
+					Date: moment(date.dateModified).format("MM/DD/YYYY"),
+					Cases: date[keyword] || 0,
+				};
+			})
+			.reverse();
+		return graphData;
+	};
 
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
@@ -45,18 +62,27 @@ const CovidState = ({ stateData }) => {
 					centered
 				>
 					<Tab value="deaths" label="Number of Deaths" />
-					<Tab value="positve" label="Number of Positive Cases" />
+					<Tab value="positive" label="Number of Positive Cases" />
 					<Tab value="recover" label="Number Recovered" />
 				</Tabs>
 			</Paper>
 			<TabPanel value={value} index="deaths">
-				Number of Deaths
+				<div>
+					<h2>Past 50 Days</h2>
+					{data && <GraphChart data={prepStateData(data, "death")} />}
+				</div>
 			</TabPanel>
-			<TabPanel value={value} index="positve">
-				Number of Positive Cases
+			<TabPanel value={value} index="positive">
+				<div>
+					<h2>Past 50 Days</h2>
+					{data && <GraphChart data={prepStateData(data, "positive")} />}
+				</div>
 			</TabPanel>
 			<TabPanel value={value} index="recover">
-				Number Recovered
+				<div>
+					<h2>Past 50 Days</h2>
+					{data && <GraphChart data={prepStateData(data, "recovered")} />}
+				</div>
 			</TabPanel>
 		</div>
 	);

@@ -6,6 +6,7 @@ import { getCurrentUSCovidData } from "../api/covid";
 import { formatReadableNumber, formatTitleCase } from "../utils/format";
 import CovidMap from "../components/Dashboard/CovidMap";
 import moment from "moment";
+import GraphChart from "../components/Common/Graph";
 
 const StatsCards = ({ dataSource, keysForRender, highlightTrend }) => {
 	const covidStats = pick(dataSource, keysForRender);
@@ -72,10 +73,11 @@ const Dashboard = ({}) => {
 		<Container>
 			<h1>Dashboard</h1>
 			<Divider variant="middle" />
-			<h2>
+			<h2>Overall US Data</h2>
+			<h3 className="text-muted">
 				Last Updated:{" "}
 				{moment(head(usCovidData).lastModified).format("MMMM Do YYYY, h:mm a")}
-			</h2>
+			</h3>
 			<Row className="my-3">
 				<Col md={5}>
 					<Row className="flex-column">

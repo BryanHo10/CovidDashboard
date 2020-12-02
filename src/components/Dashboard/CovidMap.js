@@ -17,7 +17,6 @@ const CovidMap = () => {
 	const generateClickHandler = (stateData) => {
 		return (event) => {
 			setCurrentState(stateData);
-			console.log(stateData);
 		};
 	};
 	const generateStatesConfig = (covidStates) => {
