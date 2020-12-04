@@ -41,56 +41,41 @@ const Dashboard = ({}) => {
 		);
 	}
 	return (
-		<>
-			<Navbar bg="dark" variant="dark">
-				<Navbar.Brand>COVID-19 Data | United States of America</Navbar.Brand>
-				<Nav className="ml-auto">
-					<Nav.Link href="/">Other Data</Nav.Link>
-				</Nav>
-			</Navbar>
-			<Container>
-				<Divider variant="middle" />
-				<br />
-				<h2>Overall US Data</h2>
-				<h3 className="text-muted">
-					Last Updated:{" "}
-					{moment(head(usCovidData).lastModified).format(
-						"MMMM Do YYYY, h:mm a"
-					)}
-				</h3>
-				<Row className="my-3">
-					<Col md={5}>
-						<Row className="flex-column">
-							<StatsCards
-								dataSource={head(usCovidData)}
-								keysForRender={[
-									"death",
-									"hospitalized",
-									"positive",
-									"recovered",
-								]}
-							/>
-						</Row>
-					</Col>
-					<Col>
-						<Row className="flex-column">
-							<StatsCards
-								dataSource={head(usCovidData)}
-								highlightTrend
-								keysForRender={[
-									"deathIncrease",
-									"hospitalizedIncrease",
-									"positiveIncrease",
-								]}
-							/>
-						</Row>
-					</Col>
-				</Row>
+		<Container>
+			<Divider variant="middle" />
+			<br />
+			<h2>Overall US Data</h2>
+			<h3 className="text-muted">
+				Last Updated:{" "}
+				{moment(head(usCovidData).lastModified).format("MMMM Do YYYY, h:mm a")}
+			</h3>
+			<Row className="my-3">
+				<Col md={5}>
+					<Row className="flex-column">
+						<StatsCards
+							dataSource={head(usCovidData)}
+							keysForRender={["death", "hospitalized", "positive", "recovered"]}
+						/>
+					</Row>
+				</Col>
+				<Col>
+					<Row className="flex-column">
+						<StatsCards
+							dataSource={head(usCovidData)}
+							highlightTrend
+							keysForRender={[
+								"deathIncrease",
+								"hospitalizedIncrease",
+								"positiveIncrease",
+							]}
+						/>
+					</Row>
+				</Col>
+			</Row>
 
-				<Divider variant="middle" />
-				<CovidMap />
-			</Container>
-		</>
+			<Divider variant="middle" />
+			<CovidMap />
+		</Container>
 	);
 };
 
