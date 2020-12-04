@@ -33,10 +33,10 @@ const CovidMap = () => {
 
 	return (
 		<div>
-			<div>{currentState && <CovidState stateData={currentState} />}</div>
 			<div className="covid-map">
 				<USAMap customize={covidStatesConfig} />
 			</div>
+			<div>{currentState && <CovidState stateData={currentState} />}</div>
 		</div>
 	);
 };

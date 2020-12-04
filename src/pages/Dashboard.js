@@ -1,41 +1,12 @@
 import { Container, Divider, LinearProgress } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
-import { Row, Col, Card } from "react-bootstrap";
-import { pick, head } from "lodash";
+import { Row, Col, Navbar, Nav } from "react-bootstrap";
+import { head } from "lodash";
 import { getCurrentUSCovidData } from "../api/covid";
-import { formatReadableNumber, formatTitleCase } from "../utils/format";
 import CovidMap from "../components/Dashboard/CovidMap";
 import moment from "moment";
-import GraphChart from "../components/Common/Graph";
+import StatsCards from "../components/Common/StatsCards";
 
-const StatsCards = ({ dataSource, keysForRender, highlightTrend }) => {
-	const covidStats = pick(dataSource, keysForRender);
-	return Object.keys(covidStats).map((category, idx) => {
-		const isNegative = covidStats[category] < 0;
-		return (
-			<Col className="pt-3" key={`card_${idx}`}>
-				<Card>
-					<Card.Body>
-						<Card.Title>{formatTitleCase(category)} Count</Card.Title>
-						<Card.Text>
-							<span
-								className={`h1 ${
-									highlightTrend
-										? isNegative
-											? "text-danger"
-											: "text-success"
-										: ""
-								}`}
-							>
-								{formatReadableNumber(covidStats[category])}
-							</span>
-						</Card.Text>
-					</Card.Body>
-				</Card>
-			</Col>
-		);
-	});
-};
 const Dashboard = ({}) => {
 	const [usCovidData, setUSCovidData] = useState(null);
 	const [loading, setLoading] = useState(true);
@@ -70,41 +41,56 @@ const Dashboard = ({}) => {
 		);
 	}
 	return (
-		<Container>
-			<h1>Dashboard</h1>
-			<Divider variant="middle" />
-			<h2>Overall US Data</h2>
-			<h3 className="text-muted">
-				Last Updated:{" "}
-				{moment(head(usCovidData).lastModified).format("MMMM Do YYYY, h:mm a")}
-			</h3>
-			<Row className="my-3">
-				<Col md={5}>
-					<Row className="flex-column">
-						<StatsCards
-							dataSource={head(usCovidData)}
-							keysForRender={["death", "hospitalized", "positive", "recovered"]}
-						/>
-					</Row>
-				</Col>
-				<Col>
-					<Row className="flex-column">
-						<StatsCards
-							dataSource={head(usCovidData)}
-							highlightTrend
-							keysForRender={[
-								"deathIncrease",
-								"hospitalizedIncrease",
-								"positiveIncrease",
-							]}
-						/>
-					</Row>
-				</Col>
-			</Row>
+		<>
+			<Navbar bg="dark" variant="dark">
+				<Navbar.Brand>COVID-19 Data | United States of America</Navbar.Brand>
+				<Nav className="ml-auto">
+					<Nav.Link href="/">Other Data</Nav.Link>
+				</Nav>
+			</Navbar>
+			<Container>
+				<Divider variant="middle" />
+				<br />
+				<h2>Overall US Data</h2>
+				<h3 className="text-muted">
+					Last Updated:{" "}
+					{moment(head(usCovidData).lastModified).format(
+						"MMMM Do YYYY, h:mm a"
+					)}
+				</h3>
+				<Row className="my-3">
+					<Col md={5}>
+						<Row className="flex-column">
+							<StatsCards
+								dataSource={head(usCovidData)}
+								keysForRender={[
+									"death",
+									"hospitalized",
+									"positive",
+									"recovered",
+								]}
+							/>
+						</Row>
+					</Col>
+					<Col>
+						<Row className="flex-column">
+							<StatsCards
+								dataSource={head(usCovidData)}
+								highlightTrend
+								keysForRender={[
+									"deathIncrease",
+									"hospitalizedIncrease",
+									"positiveIncrease",
+								]}
+							/>
+						</Row>
+					</Col>
+				</Row>
 
-			<Divider variant="middle" />
-			<CovidMap />
-		</Container>
+				<Divider variant="middle" />
+				<CovidMap />
+			</Container>
+		</>
 	);
 };
 

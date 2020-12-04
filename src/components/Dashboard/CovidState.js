@@ -5,6 +5,8 @@ import moment from "moment";
 import { getHistoricStateData } from "../../api/covid";
 import { getStateByAbbr } from "../../utils/format";
 import GraphChart from "../Common/Graph";
+import { Col, Row } from "react-bootstrap";
+import StatsCards from "../Common/StatsCards";
 
 const TabPanel = ({ children, value, index, ...other }) => {
 	return (
@@ -13,7 +15,29 @@ const TabPanel = ({ children, value, index, ...other }) => {
 		</div>
 	);
 };
+const DataView = ({ children, data }) => {
+	return (
+		<Row className="my-3">
+			<StatsCards
+				dataSource={head(data)}
+				highlightTrend
+				keysForRender={[
+					"deathIncrease",
+					"hospitalizedIncrease",
+					"positiveIncrease",
+				]}
+				colWidth={4}
+			/>
+			<StatsCards
+				dataSource={head(data)}
+				keysForRender={["death", "hospitalized", "positive", "recovered"]}
+				colWidth={3}
+			/>
 
+			<Col>{children}</Col>
+		</Row>
+	);
+};
 const CovidState = ({ stateData }) => {
 	const {
 		daeath,
@@ -27,6 +51,10 @@ const CovidState = ({ stateData }) => {
 	const [data, setData] = useState(null);
 
 	useEffect(() => {
+		window.scrollTo({
+			top: document.body.scrollHeight,
+			behavior: "smooth",
+		});
 		getHistoricStateData(state.toLowerCase()).then((data) => {
 			setData(data);
 		});
@@ -66,23 +94,30 @@ const CovidState = ({ stateData }) => {
 					<Tab value="recover" label="Number Recovered" />
 				</Tabs>
 			</Paper>
+
 			<TabPanel value={value} index="deaths">
-				<div>
-					<h2>Past 50 Days</h2>
-					{data && <GraphChart data={prepStateData(data, "death")} />}
-				</div>
+				<DataView data={data}>
+					<div>
+						<h2>Past 50 Days</h2>
+						{data && <GraphChart data={prepStateData(data, "death")} />}
+					</div>
+				</DataView>
 			</TabPanel>
 			<TabPanel value={value} index="positive">
-				<div>
-					<h2>Past 50 Days</h2>
-					{data && <GraphChart data={prepStateData(data, "positive")} />}
-				</div>
+				<DataView data={data}>
+					<div>
+						<h2>Past 50 Days</h2>
+						{data && <GraphChart data={prepStateData(data, "positive")} />}
+					</div>
+				</DataView>
 			</TabPanel>
 			<TabPanel value={value} index="recover">
-				<div>
-					<h2>Past 50 Days</h2>
-					{data && <GraphChart data={prepStateData(data, "recovered")} />}
-				</div>
+				<DataView data={data}>
+					<div>
+						<h2>Past 50 Days</h2>
+						{data && <GraphChart data={prepStateData(data, "recovered")} />}
+					</div>
+				</DataView>
 			</TabPanel>
 		</div>
 	);
