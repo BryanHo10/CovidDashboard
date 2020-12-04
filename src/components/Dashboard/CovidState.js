@@ -97,7 +97,8 @@ const CovidState = ({ stateData }) => {
 
 			<TabPanel value={value} index="deaths">
 				<DataView data={data}>
-					<div>
+					<div className="px-5">
+						<br />
 						<h2>Past 50 Days</h2>
 						{data && <GraphChart data={prepStateData(data, "death")} />}
 					</div>
@@ -105,7 +106,8 @@ const CovidState = ({ stateData }) => {
 			</TabPanel>
 			<TabPanel value={value} index="positive">
 				<DataView data={data}>
-					<div>
+					<div className="px-5">
+						<br />
 						<h2>Past 50 Days</h2>
 						{data && <GraphChart data={prepStateData(data, "positive")} />}
 					</div>
@@ -113,7 +115,8 @@ const CovidState = ({ stateData }) => {
 			</TabPanel>
 			<TabPanel value={value} index="recover">
 				<DataView data={data}>
-					<div>
+					<div className="px-5">
+						<br />
 						<h2>Past 50 Days</h2>
 						{data && <GraphChart data={prepStateData(data, "recovered")} />}
 					</div>

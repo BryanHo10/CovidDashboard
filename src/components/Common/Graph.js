@@ -9,7 +9,10 @@ export default GraphChart;
 
 const MyResponsiveBar = ({ data, xLabel, yLabel }) => {
 	return (
-		<Container style={{ height: "50vh" }}>
+		<Container
+			className="border"
+			style={{ height: "400px", backgroundColor: "white" }}
+		>
 			<ResponsiveBar
 				data={data}
 				keys={["Cases"]}
