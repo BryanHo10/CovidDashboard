@@ -4,6 +4,7 @@ import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/404";
 import Layout from "./components/Layout";
 import StateCounty from "./pages/StateCounty";
+import WorldData from "./pages/WorldData";
 
 function App() {
 	return (
@@ -12,6 +13,9 @@ function App() {
 				<Switch>
 					<Route exact path="/">
 						<Dashboard />
+					</Route>
+					<Route path="/world">
+						<WorldData />
 					</Route>
 					<Route path="/:stateCode">
 						<StateCounty />

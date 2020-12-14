@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
 					COVID-19 Data | United States of America
 				</Navbar.Brand>
 				<Nav className="ml-auto">
-					<Nav.Link href="/">World Data</Nav.Link>
+					<Nav.Link href="/world">World Data</Nav.Link>
 				</Nav>
 			</Navbar>
 			{children}
