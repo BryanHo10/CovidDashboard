@@ -7,6 +7,7 @@ import { getStateByAbbr } from "../../utils/format";
 import GraphChart from "../Common/Graph";
 import { Col, Row } from "react-bootstrap";
 import StatsCards from "../Common/StatsCards";
+import { Link } from "react-router-dom";
 
 const TabPanel = ({ children, value, index, ...other }) => {
 	return (
@@ -78,9 +79,15 @@ const CovidState = ({ stateData }) => {
 	};
 	return (
 		<div>
-			<h1>
-				{getStateByAbbr(state)} ({state})
-			</h1>
+			<div className="d-flex justify-content-between">
+				<h1>
+					{getStateByAbbr(state)} ({state})
+				</h1>
+				<h2>
+					<Link to={`${state}`}>View Counties {">"}</Link>
+				</h2>
+			</div>
+
 			<Paper>
 				<Tabs
 					value={value}

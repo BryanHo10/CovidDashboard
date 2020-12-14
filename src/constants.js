@@ -1,3 +1,55 @@
+import am4geodata_region_usa_alLow from "@amcharts/amcharts4-geodata/region/usa/alLow";
+import am4geodata_region_usa_akLow from "@amcharts/amcharts4-geodata/region/usa/akLow";
+import am4geodata_region_usa_azLow from "@amcharts/amcharts4-geodata/region/usa/azLow";
+import am4geodata_region_usa_arLow from "@amcharts/amcharts4-geodata/region/usa/arLow";
+import am4geodata_region_usa_caLow from "@amcharts/amcharts4-geodata/region/usa/caLow";
+import am4geodata_region_usa_coLow from "@amcharts/amcharts4-geodata/region/usa/coLow";
+import am4geodata_region_usa_ctLow from "@amcharts/amcharts4-geodata/region/usa/ctLow";
+import am4geodata_region_usa_deLow from "@amcharts/amcharts4-geodata/region/usa/deLow";
+import am4geodata_region_usa_dcLow from "@amcharts/amcharts4-geodata/region/usa/dcLow";
+import am4geodata_region_usa_flLow from "@amcharts/amcharts4-geodata/region/usa/flLow";
+import am4geodata_region_usa_gaLow from "@amcharts/amcharts4-geodata/region/usa/gaLow";
+import am4geodata_region_usa_hiLow from "@amcharts/amcharts4-geodata/region/usa/hiLow";
+import am4geodata_region_usa_idLow from "@amcharts/amcharts4-geodata/region/usa/idLow";
+import am4geodata_region_usa_ilLow from "@amcharts/amcharts4-geodata/region/usa/ilLow";
+import am4geodata_region_usa_inLow from "@amcharts/amcharts4-geodata/region/usa/inLow";
+import am4geodata_region_usa_iaLow from "@amcharts/amcharts4-geodata/region/usa/iaLow";
+import am4geodata_region_usa_ksLow from "@amcharts/amcharts4-geodata/region/usa/ksLow";
+import am4geodata_region_usa_kyLow from "@amcharts/amcharts4-geodata/region/usa/kyLow";
+import am4geodata_region_usa_laLow from "@amcharts/amcharts4-geodata/region/usa/laLow";
+import am4geodata_region_usa_meLow from "@amcharts/amcharts4-geodata/region/usa/meLow";
+import am4geodata_region_usa_mdLow from "@amcharts/amcharts4-geodata/region/usa/mdLow";
+import am4geodata_region_usa_maLow from "@amcharts/amcharts4-geodata/region/usa/maLow";
+import am4geodata_region_usa_miLow from "@amcharts/amcharts4-geodata/region/usa/miLow";
+import am4geodata_region_usa_mnLow from "@amcharts/amcharts4-geodata/region/usa/mnLow";
+import am4geodata_region_usa_msLow from "@amcharts/amcharts4-geodata/region/usa/msLow";
+import am4geodata_region_usa_moLow from "@amcharts/amcharts4-geodata/region/usa/moLow";
+import am4geodata_region_usa_mtLow from "@amcharts/amcharts4-geodata/region/usa/mtLow";
+import am4geodata_region_usa_neLow from "@amcharts/amcharts4-geodata/region/usa/neLow";
+import am4geodata_region_usa_nvLow from "@amcharts/amcharts4-geodata/region/usa/nvLow";
+import am4geodata_region_usa_nhLow from "@amcharts/amcharts4-geodata/region/usa/nhLow";
+import am4geodata_region_usa_njLow from "@amcharts/amcharts4-geodata/region/usa/njLow";
+import am4geodata_region_usa_nmLow from "@amcharts/amcharts4-geodata/region/usa/nmLow";
+import am4geodata_region_usa_nyLow from "@amcharts/amcharts4-geodata/region/usa/nyLow";
+import am4geodata_region_usa_ncLow from "@amcharts/amcharts4-geodata/region/usa/ncLow";
+import am4geodata_region_usa_ndLow from "@amcharts/amcharts4-geodata/region/usa/ndLow";
+import am4geodata_region_usa_ohLow from "@amcharts/amcharts4-geodata/region/usa/ohLow";
+import am4geodata_region_usa_okLow from "@amcharts/amcharts4-geodata/region/usa/okLow";
+import am4geodata_region_usa_orLow from "@amcharts/amcharts4-geodata/region/usa/orLow";
+import am4geodata_region_usa_paLow from "@amcharts/amcharts4-geodata/region/usa/paLow";
+import am4geodata_region_usa_riLow from "@amcharts/amcharts4-geodata/region/usa/riLow";
+import am4geodata_region_usa_scLow from "@amcharts/amcharts4-geodata/region/usa/scLow";
+import am4geodata_region_usa_sdLow from "@amcharts/amcharts4-geodata/region/usa/sdLow";
+import am4geodata_region_usa_tnLow from "@amcharts/amcharts4-geodata/region/usa/tnLow";
+import am4geodata_region_usa_txLow from "@amcharts/amcharts4-geodata/region/usa/txLow";
+import am4geodata_region_usa_utLow from "@amcharts/amcharts4-geodata/region/usa/utLow";
+import am4geodata_region_usa_vtLow from "@amcharts/amcharts4-geodata/region/usa/vtLow";
+import am4geodata_region_usa_vaLow from "@amcharts/amcharts4-geodata/region/usa/vaLow";
+import am4geodata_region_usa_waLow from "@amcharts/amcharts4-geodata/region/usa/waLow";
+import am4geodata_region_usa_wvLow from "@amcharts/amcharts4-geodata/region/usa/wvLow";
+import am4geodata_region_usa_wiLow from "@amcharts/amcharts4-geodata/region/usa/wiLow";
+import am4geodata_region_usa_wyLow from "@amcharts/amcharts4-geodata/region/usa/wyLow";
+
 const US_STATES = [
 	{ id: 0, full_name: "Alabama", abbr: "AL" },
 	{ id: 1, full_name: "Alaska", abbr: "AK" },
@@ -51,5 +103,57 @@ const US_STATES = [
 	{ id: 49, full_name: "Wisconsin", abbr: "WI" },
 	{ id: 50, full_name: "Wyoming", abbr: "WY" },
 ];
-
-export { US_STATES };
+const StateCounty_Models = {
+	AL: am4geodata_region_usa_alLow,
+	AK: am4geodata_region_usa_akLow,
+	AZ: am4geodata_region_usa_azLow,
+	AR: am4geodata_region_usa_arLow,
+	CA: am4geodata_region_usa_caLow,
+	CO: am4geodata_region_usa_coLow,
+	CT: am4geodata_region_usa_ctLow,
+	DE: am4geodata_region_usa_deLow,
+	DC: am4geodata_region_usa_dcLow,
+	FL: am4geodata_region_usa_flLow,
+	GA: am4geodata_region_usa_gaLow,
+	HI: am4geodata_region_usa_hiLow,
+	ID: am4geodata_region_usa_idLow,
+	IL: am4geodata_region_usa_ilLow,
+	IN: am4geodata_region_usa_inLow,
+	IA: am4geodata_region_usa_iaLow,
+	KS: am4geodata_region_usa_ksLow,
+	KY: am4geodata_region_usa_kyLow,
+	LA: am4geodata_region_usa_laLow,
+	ME: am4geodata_region_usa_meLow,
+	MD: am4geodata_region_usa_mdLow,
+	MA: am4geodata_region_usa_maLow,
+	MI: am4geodata_region_usa_miLow,
+	MN: am4geodata_region_usa_mnLow,
+	MS: am4geodata_region_usa_msLow,
+	MO: am4geodata_region_usa_moLow,
+	MT: am4geodata_region_usa_mtLow,
+	NE: am4geodata_region_usa_neLow,
+	NV: am4geodata_region_usa_nvLow,
+	NH: am4geodata_region_usa_nhLow,
+	NJ: am4geodata_region_usa_njLow,
+	NM: am4geodata_region_usa_nmLow,
+	NY: am4geodata_region_usa_nyLow,
+	NC: am4geodata_region_usa_ncLow,
+	ND: am4geodata_region_usa_ndLow,
+	OH: am4geodata_region_usa_ohLow,
+	OK: am4geodata_region_usa_okLow,
+	OR: am4geodata_region_usa_orLow,
+	PA: am4geodata_region_usa_paLow,
+	RI: am4geodata_region_usa_riLow,
+	SC: am4geodata_region_usa_scLow,
+	SD: am4geodata_region_usa_sdLow,
+	TN: am4geodata_region_usa_tnLow,
+	TX: am4geodata_region_usa_txLow,
+	UT: am4geodata_region_usa_utLow,
+	VT: am4geodata_region_usa_vtLow,
+	VA: am4geodata_region_usa_vaLow,
+	WA: am4geodata_region_usa_waLow,
+	WV: am4geodata_region_usa_wvLow,
+	WI: am4geodata_region_usa_wiLow,
+	WY: am4geodata_region_usa_wyLow,
+};
+export { US_STATES, StateCounty_Models };
